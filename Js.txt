@@ -1,0 +1,254 @@
+Step 1. JavaScript Fundamentals
+
+1. What are the different data types in JavaScript? 
+
+JavaScript has primitive data types, including Number (e.g., 42), String (e.g., "Hello"), Boolean (true or false), Undefined (a variable declared but not assigned), Null (an intentional absence of value), Symbol (unique identifiers), and BigInt (for very large integers). It also has non-primitive data types like Objects, which store collections of key-value pairs, and Arrays, which hold ordered lists of values. Functions are also considered objects in JavaScript. Since JavaScript is dynamically typed, a variable's type can change during runtime, and you can check types using the typeof operator.
+
+2. What is the difference between var, let, and const?
+
+In JavaScript, var is function-scoped, can be redeclared, and is hoisted but not block-scoped. let is block-scoped, cannot be redeclared in the same scope, and is also hoisted but uninitialized until the declaration. const is block-scoped, must be initialized during declaration, and its value cannot be reassigned, though objects and arrays declared with const can have their contents modified. Use let for variables that change and const for constants, avoiding var in modern code.
+
+3. Explain JavaScript's == vs. === operators.
+In JavaScript, the == operator checks for equality with type coercion, meaning it converts the operands to the same type before comparing. For example, 5 == "5" evaluates to true because the string "5" is coerced into a number.
+The === operator, known as the strict equality operator, checks for both value and type equality without coercion. For instance, 5 === "5" evaluates to false because the types (number and string) are different.
+In general, it's recommended to use === to avoid unexpected results from type coercion.
+4. What is type coercion in JavaScript? Give an example.
+Type correction in JavaScript typically refers to type coercion, where JavaScript automatically converts one data type to another to perform an operation. For example, '5' - 2 results in 3 because JavaScript converts the string '5' into a number for subtraction. This can happen with operators like +, -, or comparisons. While it simplifies coding, it can also cause unexpected results, so using strict checks (===) and explicit conversions (e.g., Number('5')) is recommended.
+
+5. Explain the concept of scope in JavaScript.
+In JavaScript, scope determines where variables and functions are accessible in your code.
+Global Scope: Variables declared outside of any function or block can be accessed from anywhere in the program.
+Function Scope: Variables declared inside a function can only be accessed within that specific function.
+Block Scope: Variables declared inside a block (using let or const) are only accessible within that block.
+Scope helps organize variables and prevent conflicts in your code.
+
+6. What is hoisting in JavaScript?
+
+Hoisting in JavaScript is the behavior where variable and function declarations are moved to the top of their scope during the compilation phase. This means you can use variables or functions before they are declared in the code. However, only the declarations are hoisted, not the assignments or initializations.
+
+
+
+7. What are template literals, and how are they used?
+
+Template literals in JavaScript are a way to create strings that allow embedding expressions and multi-line text easily. They are enclosed in backticks (`) instead of regular quotes. You can include variables or expressions inside a string using ${} syntax.
+
+8. Explain what a higher-order function is in JavaScript.
+
+A higher-order function in JavaScript is a function that can either:
+Take one or more functions as arguments.
+Return a function as its result.
+This concept allows functions to be treated as first-class citizens, enabling more flexible and reusable code. Higher-order functions are often used for operations like mapping, filtering, or reducing arrays.
+
+9. What are arrow functions, and how are they different from regular functions?
+Arrow functions in JavaScript are a shorter way to write functions. They use the => syntax and have some key differences from regular functions:
+Syntax: Arrow functions are more concise and do not require the function keyword.
+this Binding: Arrow functions do not have their own this; instead, they inherit this from the surrounding context (lexical scoping), whereas regular functions have their own this depending on how they're called.
+No arguments Object: Arrow functions do not have the arguments object, which regular functions have for accessing passed arguments.
+In summary, arrow functions provide a simpler syntax and behave differently with respect to this and arguments.
+10. What is an Immediately Invoked Function Expression (IIFE)?
+
+An Immediately Invoked Function Expression (IIFE) is a function that is defined and executed immediately after its creation. It is often used to create a private scope for variables, preventing them from polluting the global scope.
+An IIFE is written by enclosing a function expression in parentheses, followed by () to invoke it immediately.
+
+
+Step 2.Functions and Objects
+
+1. Explain the concept of closures in JavaScript.
+A closure in JavaScript is a function that retains access to its lexical scope (the environment where it was created), even when it is called outside that scope. In other words, a closure allows a function to "remember" the variables and parameters of its outer function, even after the outer function has finished executing. This enables powerful patterns, such as data encapsulation and function factories.
+
+2. What is the this keyword, and how does it behave in different contexts?
+The this keyword in JavaScript refers to the execution context of a function. Its behavior depends on how and where it's called:
+   1. Global Context:
+Browser: this refers to window.
+Node.js: this refers to global (non-strict mode)
+   2. Object Method:
+this refers to the object the method belongs to.
+   3. Standalone Function:
+Non-strict: this is global.
+Strict: this is undefined.
+    4. Arrow Functions:
+Inherit this from the surrounding lexical scope.
+    5. Constructor Functions/Classes:
+this refers to the new instance being created.
+    6. Event Handlers:
+this is the element the event is bound to.
+Arrow functions inherit this from the outer scope.
+    7. Explicit Binding:
+Use call, apply, or bind to set this .
+Key Rule: this depends on how the function is called, not where it's defined
+
+
+3. How do you create an object in JavaScript
+In JavaScript, we can create an object using several methods. The most common way is the object literal syntax, where we define key-value pairs inside curly braces, like { key: value }. For example, const obj = { name: 'Humayra', age: 15}; creates an object with two properties. Another method is using the Object constructor, such as const obj = new Object(); followed by adding properties, like obj.name = 'Humayra';. We can also use constructor functions or classes to create multiple objects with shared properties and methods. For example, function Person(name, age) { this.name = name; this.age = age; } or class Person { constructor(name, age) { this.name = name; this.age = age; } }. Each approach is useful depending on our use case and the level of customization needed.
+
+4. What is the difference between null and undefined?
+In JavaScript, null and undefined both represent "nothing," but they have different meanings and use cases:
+1. undefined: This indicates that a variable has been declared but not assigned a value. It is the default value for uninitialized variables, missing function arguments, and non-existent object properties. For example:
+let x;
+console.log(x); // undefined
+
+2. null: This is an intentional assignment of "no value" or "empty value." Developers explicitly use null to indicate the absence of a value. For example:
+let y = null;
+console.log(y); // null
+
+Key Differences: 
+undefined is used by JavaScript to signify a value that hasn’t been set, while null is explicitly set by developers to indicate the absence of a value.
+The type of undefined is "undefined", whereas the type of null is "object".
+
+
+
+5. How do you copy an object in JavaScript? Explain shallow vs. deep copy.
+In JavaScript, you can copy an object as either a shallow copy or a deep copy, depending on whether nested objects should be duplicated or referenced.
+Shallow Copy:
+A shallow copy duplicates only top-level properties, while nested objects remain referenced. Changes to nested properties affect the original object.
+Methods:
+Object.assign()
+const copy = Object.assign({}, original);
+Spread Syntax (...)
+const copy = { ...original };
+Deep Copy:
+A deep copy duplicates all properties, including nested ones, creating a fully independent object. Changes to the copy do not affect the original.
+Methods:
+JSON.parse(JSON.stringify(obj) (limited to simple objects).
+structuredClone(obj) (modern and robust).
+Libraries like Lodash’s _.cloneDeep.
+Key Difference:
+Shallow Copy: Nested objects are shared.
+Deep Copy: Fully independent copy.
+Use shallow for simple objects and deep for complex or nested ones.
+
+
+6. Explain how call, apply, and bind work in JavaScript.
+In JavaScript, call, apply, and bind are methods used to explicitly set the this context of a function. The call method invokes a function immediately and allows you to pass arguments one by one. For example, func.call(obj, arg1, arg2) calls func with obj as its this and arg1, arg2 as arguments. The apply method works similarly, but arguments are passed as an array: func.apply(obj, [arg1, arg2]). Unlike call and apply, bind doesn’t invoke the function immediately. Instead, it returns a new function with this permanently set to the specified value, and arguments can be partially applied: const boundFunc = func.bind(obj, arg1). These methods are particularly useful for borrowing methods from one object to use on another or when working with callback functions.
+
+
+7. What is the prototype chain, and how does inheritance work in JavaScript?
+In JavaScript, the prototype chain is a mechanism for inheritance, allowing objects to inherit properties and methods from other objects. Every object has a hidden internal property called [[Prototype]], which points to another object. This forms a chain, where an object can access properties and methods of its prototype and so on, up the chain, until it reaches null. When we try to access a property on an object, JavaScript first checks if it exists on that object. If not, it looks up the prototype chain. Inheritance in JavaScript is based on prototypes, not classes. When we create a new object using a constructor function or class, the object inherits from the constructor’s prototype. This allows objects to share methods and properties, facilitating code reuse.
+
+
+
+
+
+Step 3. Arrays and Strings
+What are some common array methods in JavaScript?
+In JavaScript, arrays come with a variety of built-in methods that allow for efficient manipulation of their elements. Common array methods include push() and pop() for adding and removing elements at the end of an array, respectively; shift() and unshift() for adding and removing elements at the beginning. The map() method creates a new array by applying a function to each element, while filter() creates a new array with elements that pass a test. reduce() is used to accumulate a single value from an array based on a given function. Other useful methods include forEach() for iterating over elements, find() for retrieving the first element that meets a condition, and sort() for ordering the array. Methods like concat() and join() allow combining arrays and converting them into strings, respectively, while slice() and splice() help in extracting or modifying parts of an array. These methods enable developers to efficiently work with arrays in various scenarios.
+
+How does map() differ from forEach() in arrays?
+The map() and forEach() methods in JavaScript both iterate over an array, but they serve different purposes. The map() method creates a new array by applying a function to each element of the original array and returns the new array, leaving the original array unchanged. This makes it useful when you need to transform the elements of an array. On the other hand, forEach() simply iterates over the array and applies a function to each element, but it does not return anything—it returns undefined and is typically used for executing side effects like logging or updating external variables. While map() is ideal for transforming data and producing a new array, forEach() is suited for operations that do not require generating a new array.
+
+Explain the filter() method. How does it work?
+The filter() method in JavaScript is used to create a new array containing all elements from the original array that satisfy a specified condition. It takes a callback function as an argument, which is executed on each element of the array. This callback function must return true or false for each element: if it returns true, the element is included in the new array; if it returns false, the element is excluded. Importantly, filter() does not modify the original array but instead returns a new array with the filtered results. This method is useful for selecting elements that match certain criteria without affecting the original data. For example, arr.filter(item => item > 10) creates a new array with only the elements greater than 10.
+
+What does the reduce() method do, and how is it used?
+The reduce() method in JavaScript is used to accumulate or reduce an array to a single value by applying a function to each element of the array, from left to right. It takes a callback function as an argument, which itself takes two parameters: an accumulator (which stores the running total or result) and the current element of the array. The callback function is executed for each element, updating the accumulator with the result of each iteration. An optional second argument can be provided to reduce() to set the initial value of the accumulator. The reduce() method is commonly used for tasks like summing values, finding the maximum or minimum element, or combining all elements in some way. For example, arr.reduce((acc, curr) => acc + curr, 0) sums all elements in the array, starting from 0.
+
+How do you find the length of a string and reverse it?
+To find the length of a string in JavaScript, we can use the .length property, like str.length . To reverse a string, you can convert it to an array using .split(“”), reverse the array with .reverse(), and then join it back into a string using .join(“”) . For example:
+let str = "hello";
+let length = str.length; // 5
+let reversed = str.split('').reverse().join(''); // "olleh"
+
+
+
+
+
+
+What are template literals, and how can they be used for string manipulation?
+
+Template literals in JavaScript are a feature that allows for easier string creation and manipulation. They are enclosed in backticks (`) rather than quotes (' or "), and support string interpolation, allowing us to embed expressions directly within the string using ${}. This makes it easier to construct strings dynamically. For example, we can create a sentence like this:
+let name = "Tahsin";
+let greeting = `Hello, my name is ${name}!`;
+Template literals also allow for multi-line strings without the need for  escape characters, which makes them useful for formatting text across multiple lines:
+let message = `This is a 
+multi-line string.`;
+Overall, template literals simplify string manipulation by providing a more readable and flexible way to work with strings.
+
+How do you remove duplicates from an array?
+To remove duplicates from an array in JavaScript, we can use the Set object, which automatically removes duplicate values. By converting the array into a Set and then back into an array, we can eliminate any duplicates. For example:
+
+let arr = [1, 2, 2, 3, 4, 4, 5];
+let uniqueArr = [...new Set(arr)];
+console.log(uniqueArr); // [1, 2, 3, 4, 5]
+This creates a new array with only unique elements, as the Set automatically discards any repeated values. Another approach is using the filter() method to manually check for duplicates, but using Set is simpler and more efficient.
+
+
+
+Step 4. Control Structures and Error Handling
+
+How does JavaScript handle implicit type conversion?
+JavaScript handles implicit type conversion, or type coercion, automatically when different data types are involved in operations. For example, when performing arithmetic operations, JavaScript converts strings to numbers, like '5' - 2 resulting in 3. However, in cases like string concatenation, it converts numbers to strings, as in 5 + '5', resulting in '55'. JavaScript also coerces values during comparisons, such as 0 == '0' being true, since both sides are converted to the same type. While implicit type conversion can be convenient, it may lead to unexpected behavior, so it's often safer to use explicit conversion methods like Number(), String(), or Boolean() to ensure the correct type handling.
+
+What does typeof return for different data types?
+The typeof operator in JavaScript returns a string that indicates the type of a given value. Here's how it behaves for different data types:
+typeof 42 -> “number”
+typeof "hello" ? "string"
+typeof true ? "boolean"
+typeof undefined ? "undefined"
+typeof null ? "object" (This is a known quirk in JavaScript.)
+typeof {} ? "object"
+typeof [] ? "object" (Arrays are technically objects in JavaScript.)
+typeof function() {} ? "function" (Functions are a special type of object.)
+
+What is NaN, and how can you check if a value is NaN?
+NaN stands for "Not-a-Number" in JavaScript, and it represents a value that is not a legal number, often resulting from an invalid arithmetic operation like 0 / 0 or trying to parse a non-numeric string into a number. Although NaN is of type number, it is not equal to itself, meaning that NaN === NaN will return false. To check if a value is NaN, we can use the Number.isNaN() function, which correctly identifies NaN values. Here's an example:
+let value = 0 / 0; 
+console.log(Number.isNaN(value)); // true
+
+let anotherValue = 'hello';
+console.log(Number.isNaN(anotherValue)); // false
+
+Using Number.isNaN() is preferred over isNaN() because it avoids unexpected type coercion.
+
+
+
+Step 5. Miscellaneous
+
+1. What is event delegation, and how does it work?
+Event delegation is a technique in JavaScript where a single event listener is attached to a parent element instead of multiple listeners on individual child elements. This works by leveraging the event's bubbling phase, where an event triggered on a child element bubbles up to its parent. When the event reaches the parent, the listener checks if the event target matches a specific child element and handles the event accordingly. This approach improves performance, especially when dealing with dynamic content, as the listener doesn't need to be added or removed from individual elements. For example, instead of adding separate click event listeners to each list item, one can add a click listener to the parent ul and check if the clicked target is an <li> element.
+document.querySelector('ul').addEventListener('click', function(event) {
+  if (event.target.tagName === 'LI') {
+    console.log('List item clicked:', event.target.textContent);
+  }
+});
+This method ensures that even newly added <li> elements are properly handled without needing to attach separate listeners to them.
+
+2. What are default parameters in JavaScript?
+Default parameters in JavaScript allow us to specify default values for function parameters if no value or undefined is passed for them. This feature provides a way to ensure that a function has valid values to work with, even if certain arguments are omitted. Default values are assigned in the function definition, following the parameter name, using the assignment operator (=). For example, in the function greet(name = 'Guest'), if no argument is provided for name, it defaults to 'Guest'. This helps avoid errors and simplifies function calls. Here's an example:
+function greet(name = 'Guest') {
+  console.log(`Hello, ${name}!`);
+}
+greet(); // Hello, Guest!
+greet('Alice'); // Hello, Alice!
+
+In this example, name defaults to 'Guest' if no argument is passed.
+3. What is the difference between synchronous and asynchronous programming?
+Synchronous programming executes tasks one after another, meaning each operation must complete before the next one starts. This can lead to delays, especially when dealing with time-consuming tasks like file reading or network requests, as the program has to wait for each task to finish. In contrast, asynchronous programming allows tasks to run independently, without blocking the execution of other code. This is especially useful for tasks like I/O operations, where the program can continue running other code while waiting for a response. JavaScript handles asynchronous operations using mechanisms like callbacks, promises, and async/await. For example, while reading a file asynchronously, the program can continue processing other tasks instead of waiting for the file to load.
+
+4. How does the setTimeout function work, and what is its use?
+The setTimeout function in JavaScript is used to delay the execution of a specified function by a given number of milliseconds. It takes two arguments: the first is the function to be executed, and the second is the delay in milliseconds. After the specified time, the function is executed once. setTimeout is useful for creating time-based behaviors, like delaying a user notification or animation, or performing periodic tasks. For example, setTimeout(() => console.log('Hello after 2 seconds'), 2000) will log "Hello after 2 seconds" after a delay of 2000 milliseconds (2 seconds). The function executes only once unless used in combination with other methods like setInterval.
+
+5. What is the purpose of JSON.stringify() and JSON.parse()?
+The JSON.stringify() and JSON.parse() methods are used to convert data between JavaScript objects and JSON (JavaScript Object Notation) format. JSON.stringify() converts a JavaScript object into a JSON string, which is useful for transmitting data over a network or storing it in a file. For example, JSON.stringify({ name: "Alice", age: 25 }) converts the object into the string {"name":"Alice","age":25}. On the other hand, JSON.parse() takes a JSON string and converts it back into a JavaScript object, allowing us to work with the data in its original format. For instance, JSON.parse('{"name":"Alice","age":25}') converts the string back into { name: "Alice", age: 25 }. These methods are essential for serializing and deserializing data when dealing with APIs, local storage, or other data transfer operations.
+
+6. How can you handle asynchronous code in JavaScript?
+Asynchronous code in JavaScript can be handled using callbacks, promises, and async/await. Callbacks are functions passed as arguments to other functions and are executed after a task completes, but they can lead to "callback hell" if nested deeply. Promises provide a more structured way to handle asynchronous operations by representing a value that may be available now or in the future, using .then() for success and .catch() for errors. async/await is a more recent and cleaner approach, allowing us to write asynchronous code that looks synchronous. An async function always returns a promise, and the await keyword is used to pause the function execution until the promise resolves. For example:
+async function fetchData() {
+  try {
+    let response = await fetch('https://api.example.com/data');
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+Using async/await simplifies the handling of asynchronous code by making it more readable and reducing the complexity of chaining promises.
+
+
+
+
+
+7. Explain the concept of the Event Loop in JavaScript.
+The Event Loop in JavaScript is a mechanism that allows non-blocking, asynchronous operations to be executed while ensuring the single-threaded execution model remains efficient. It works by continuously checking the call stack and the message queue. When a synchronous function is called, it is pushed onto the call stack and executed immediately. If an asynchronous operation (like a setTimeout, fetch, or an event handler) is encountered, the associated callback is placed in the message queue once the operation is complete. The Event Loop constantly monitors the call stack and, when it's empty, it pushes the callback functions from the message queue to the stack for execution. This process enables JavaScript to handle multiple operations concurrently without freezing the program, even though it runs in a single thread.
+
+
+
